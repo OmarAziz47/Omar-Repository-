@@ -1,0 +1,133 @@
+package com.example.omaraziz.balootcounter;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.NumberPicker;
+import android.widget.Button;
+
+
+
+public class MainActivity extends AppCompatActivity {
+    int scoreRight = 0, scoreLeft = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);}
+
+
+    /*
+    public void submitOrder(View view){
+        Button BottonOrder = (Button) findViewById(R.id.button);
+    }*/ // يبي لي شاشه تطلع بوجه المستخدم تقول له انتهت اللعبه ***
+    int n,m = 0;
+    public void enter(View view) {
+
+        EditText EditTextUs = (EditText) findViewById(R.id.counter_us);
+        String n1 = EditTextUs.getText().toString().trim();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        if(n1.isEmpty() || n1.length() == 0 || n1.equals("") || n1 == null)
+        { n = 0;   //EditText is empty
+        }
+        else
+        { n = Integer.parseInt(n1);  //EditText is not empty
+        }
+        EditText EditTextThem = (EditText) findViewById(R.id.counter_them);
+        String m1 = EditTextThem.getText().toString();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        if(m1.isEmpty() || m1.length() == 0 || m1.equals("") || m1 == null)
+        {  m =0;   //EditText is empty
+        }
+        else
+        {m = Integer.parseInt(m1); //EditText is not empty
+             } // end of chicking and start of counting
+        scoreLeft +=n;
+        scoreRight += m;
+        if(scoreLeft>=152) {
+            theyWon();}
+        if(scoreRight>=152){
+            weWon();}
+        displayLeft(scoreLeft);
+        displayRight(scoreRight);
+        EditTextThem.getText().clear();
+        EditTextUs.getText().clear();}
+    public void back (View view){
+        scoreLeft -=n;
+        scoreRight -= m;
+        displayLeft(scoreLeft);
+        displayRight(scoreRight);
+        n=0;
+        m=0;}
+    public void reset(View View){
+        scoreRight=0;
+        scoreLeft =0;
+        displayLeft(scoreLeft);
+        displayRight(scoreRight);
+        String enjoy = "Enjoy !" ;
+        TextView textView =(TextView) findViewById(R.id.text);
+        textView.setText(String.valueOf(enjoy));
+        n=0;
+        m=0;}
+    public void weWon(){
+        String we = "We Won" ;
+        TextView textView =(TextView) findViewById(R.id.text);
+        textView.setText(String.valueOf(we));}
+    public void theyWon(){
+        String they = "They Won";
+        TextView textView =(TextView) findViewById(R.id.text);
+        textView.setText(String.valueOf(they));}
+
+    public void displayLeft(int scoreL){
+        TextView teamATextView =(TextView) findViewById(R.id.SecLeft);
+        teamATextView.setText(String.valueOf(scoreL));}
+
+    public void displayRight(int scoreR){
+        TextView teamBTextView =(TextView) findViewById(R.id.SecRight);
+        teamBTextView.setText(String.valueOf(scoreR));}
+
+
+}
+ ////////////////////////
+ ///////
+ //
+ /
+ 
+     <Button
+        android:id="@+id/Button1"
+        android:onClick="enter"
+        android:background="#3B9C9C"
+        android:layout_height="44dp"
+        android:layout_width="130dp"
+        android:text="سجل"
+        android:textColor="#ffff"
+        android:textSize="25sp"
+        android:layout_marginBottom="26dp"
+
+        android:layout_above="@+id/relativeLayout2"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:onClick="back"
+        android:background="#808080"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:text="Back"
+        android:layout_marginLeft="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/Button1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="23dp"
+        android:id="@+id/button" />
+
+    <Button
+        android:onClick="reset"
+        android:background="#000"
+        android:textColor="#808080"
+        android:text="Reset"
+        android:layout_marginLeft="30dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/Button1"
+        android:layout_alignParentStart="true"
+        android:id="@+id/reset_button" />

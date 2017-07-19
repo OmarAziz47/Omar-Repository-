@@ -1,0 +1,102 @@
+package com.example.android.balootcounter;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.NumberPicker;
+import android.widget.Button;
+
+
+
+public class MainActivity extends AppCompatActivity {
+    int scoreRight = 0, scoreLeft = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);}
+
+
+    /*
+    public void submitOrder(View view){
+        Button BottonOrder = (Button) findViewById(R.id.button);
+    }*/ // يبي لي شاشه تطلع بوجه المستخدم تقول له انتهت اللعبه ***
+
+    public void enter(View view) {
+        int n = 0;
+        EditText EditTextUs = (EditText) findViewById(R.id.counter_us);
+        String n1 = EditTextUs.getText().toString().trim();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        
+        if(n1.isEmpty() || n1.length() == 0 || n1.equals("") || n1 == null)
+        { n = 0;   //EditText is empty
+        }
+        else
+        { n = Integer.parseInt(n1);  //EditText is not empty
+        }
+
+        int m=0;
+        EditText EditTextThem = (EditText) findViewById(R.id.counter_them);
+        String m1 = EditTextThem.getText().toString();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        if(m1.isEmpty() || m1.length() == 0 || m1.equals("") || m1 == null)
+        {  m =0;   //EditText is empty
+        }
+        else
+         {m = Integer.parseInt(m1); //EditText is not empty
+        }
+        scoreLeft +=n;
+        scoreRight += m;
+        if(scoreLeft>=152) {
+            theyWon();}
+        displayLeft(scoreLeft);
+
+        if(scoreRight>=152){
+            weWon();}
+        displayRight(scoreRight);
+         
+        EditTextThem.getText().clear();
+        EditTextUs.getText().clear();
+       }
+
+
+
+/*
+    public void enterRight(View view) {
+        int m=0;
+        EditText EditTextThem = (EditText) findViewById(R.id.counter_them);
+        String m1 = EditTextThem.getText().toString();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        m = Integer.parseInt(m1);
+        scoreRight += m;
+        if(scoreRight>=152){
+            theyWon();}
+        displayRight(scoreRight);}*/
+
+    public void weWon(){
+        String we = "We Won" ;
+        TextView textView =(TextView) findViewById(R.id.text);
+        textView.setText(String.valueOf(we));}
+
+    public void theyWon(){
+        String they = "They Won";
+        TextView textView =(TextView) findViewById(R.id.text);
+        textView.setText(String.valueOf(they));}
+
+    public void displayLeft(int scoreL){
+        TextView teamATextView =(TextView) findViewById(R.id.SecLeft);
+        teamATextView.setText(String.valueOf(scoreL));}
+
+    public void displayRight(int scoreR){
+        TextView teamBTextView =(TextView) findViewById(R.id.SecRight);
+        teamBTextView.setText(String.valueOf(scoreR));}
+
+    public void reset(View View){
+        scoreRight=0;
+        scoreLeft =0;
+        displayLeft(scoreLeft);
+        displayRight(scoreRight);
+        String enjoy = "Enjoy !" ;
+        TextView textView =(TextView) findViewById(R.id.text);
+        textView.setText(String.valueOf(enjoy));
+    }
+}

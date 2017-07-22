@@ -1,0 +1,65 @@
+main activity.java
+
+package com.example.omaraziz.balootcounter;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.app.Dialog;
+import android.widget.NumberPicker;
+import android.widget.Button;
+
+
+
+public class MainActivity extends AppCompatActivity {
+    int scoreRight = 0, scoreLeft = 0;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        Button mShowDialog = (Button) findViewById(R.id.buttonAlert);
+        mShowDialog.setOnContextClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                View mview = getLayoutInflater().inflate(R.layout.dialog_alert,null);
+                Button mAlertButton = (Button) mview.findViewById(R.id.AlertButton);
+
+                mAlertButton.setOnClickListener(new View.OnClickListener());
+        });
+    }
+// // // // // // / / / / / //
+رح لاي اوت يسار رايت كليك على نيو اكتب مثلل اللي تحت بدون اكس ام ال و اكتب مثلل كذا   
+dialog_alert.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:textSzie="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you_have_won"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:textColor="@android:color/white"
+        android:background="@color/colorAccent"/>
+</LinearLayout>
+
+// // // // /// /// // //
+الباقي نفسه و تراي ماحيطت اخر تحديث على اللابتوب !!

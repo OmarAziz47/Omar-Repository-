@@ -1,0 +1,151 @@
+package com.example.omaraziz.balootcounter;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.app.Dialog;
+import android.widget.NumberPicker;
+import android.widget.Button;
+
+
+
+public class MainActivity extends AppCompatActivity {
+    int scoreRight = 0, scoreLeft = 0;
+    int n, m = 0;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);}
+    // يبي لي شاشه تطلع بوجه المستخدم تقول له انتهت اللعبه ***
+    public void enter(View view) {
+
+        EditText EditTextUs = (EditText) findViewById(R.id.counter_us);
+        String n1 = EditTextUs.getText().toString().trim();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        if(n1.isEmpty() || n1.length() == 0 || n1.equals("") || n1 == null)
+        { n = 0;   //EditText is empty
+        }
+        else
+        { n = Integer.parseInt(n1);  //EditText is not empty
+        }
+        EditText EditTextThem = (EditText) findViewById(R.id.counter_them);
+        String m1 = EditTextThem.getText().toString();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        if(m1.isEmpty() || m1.length() == 0 || m1.equals("") || m1 == null)
+        {  m =0;   //EditText is empty
+        }
+        else
+        {m = Integer.parseInt(m1); //EditText is not empty
+             } // end of chicking and start of counting
+        if(scoreLeft<500 ||scoreRight<500){
+        scoreLeft +=n;
+        scoreRight += m;
+        if(scoreLeft>=152) {
+            displayLeft(scoreLeft);
+            displayRight(scoreRight);
+            EditTextThem.getText().clear();
+            EditTextUs.getText().clear();
+
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.dialog_alert, null);
+            Button mAlertButton = (Button) mView.findViewById(R.id.btWeAlert);
+            mBuilder.setView(mView);
+            AlertDialog dialog = mBuilder.create();
+            dialog.show(); }
+        if(scoreRight>=152){
+         displayLeft(scoreLeft);
+         displayRight(scoreRight);
+         EditTextThem.getText().clear();
+         EditTextUs.getText().clear();
+
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            View mView = getLayoutInflater().inflate(R.layout.dialog_alert_they, null);
+            Button mAlertButton = (Button) mView.findViewById(R.id.btWeAlert);
+            mBuilder.setView(mView);
+            AlertDialog dialog = mBuilder.create();
+            dialog.show(); }
+
+            displayLeft(scoreLeft);
+            displayRight(scoreRight);
+            EditTextThem.getText().clear();
+            EditTextUs.getText().clear();
+
+        }}
+        
+        
+        // /// /// ////// ////     /////
+        
+        
+        <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent">
+<TextView
+    android:id="@+id/alertTextViewThey"
+    android:textSize="25sp"
+    android:textStyle="bold"
+    android:layout_marginTop="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/we_have_won"
+    android:layout_gravity="center"/>
+
+<TextView
+    android:id="@+id/alertTextView2"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Click RESET to paly again"
+    android:layout_gravity="center"/>
+
+<Button
+    android:id="@+id/btWeAlert"
+    android:layout_gravity="center"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/ok"
+    android:textColor="@android:color/white"
+    android:background="@color/colorAccent"/>
+</LinearLayout>
+ 
+ 
+ 
+ /// //// //          //////////////////////
+ 
+ 
+ <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/alertTextViewWe"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you_have_won"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/alertTextView2"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Click RESET to paly again"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btWeAlert"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        android:textColor="@android:color/white"
+        android:background="@color/colorAccent"/>
+</LinearLayout>

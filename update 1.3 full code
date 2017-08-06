@@ -356,8 +356,7 @@ COLORS.xml
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <intent-filter>                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
@@ -405,5 +404,10 @@ COLORS.xml
         android:layout_height="wrap_content"
         android:text="فازوا"
         android:layout_gravity="center"/>
-        
+       ////// 
+       //////////// //// ////// ////// //////
+       
+       APP ICON
+       
+       https://lh3.googleusercontent.com/-m4gx0y7zZLs/WYWAs-4MvCI/AAAAAAAAACI/hxLoqLh_HxYe_trweNIw82aQxxrZ4QZNgCL0BGAYYCw/h236/2017-08-05.jpg
     

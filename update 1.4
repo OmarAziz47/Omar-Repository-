@@ -1,0 +1,426 @@
+main activty
+
+package com.example.omara.balootcounter;
+
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.content.DialogInterface;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.app.Dialog;
+import android.widget.NumberPicker;
+import android.widget.Button;
+import com.example.omara.balootcounter.R;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    int scoreRight = 0, scoreLeft = 0;
+ int n,m=0;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);}
+
+    public void enter(View view) {
+
+        EditText EditTextUs = (EditText) findViewById(R.id.counter_us);
+        String n1 = EditTextUs.getText().toString().trim();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        if(n1.isEmpty() || n1.length() == 0 || n1.equals("") || n1 == null)
+
+        { n = 0;   //EditText is empty
+        }
+        else
+        { n = Integer.parseInt(n1);  //EditText is not empty
+            if(n >152 || scoreLeft>153 || scoreRight>153){
+                n=0;
+                AlertDialog.Builder ABuilder = new AlertDialog.Builder(MainActivity.this);
+                ABuilder.setTitle("إدخال خاطأ");
+                ABuilder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        dialoginterface.dismiss();
+                    }
+                });
+                AlertDialog dialog = ABuilder.create();
+                dialog.show();
+                }
+        }
+        EditText EditTextThem = (EditText) findViewById(R.id.counter_them);
+
+        String m1 = EditTextThem.getText().toString();  // يطلع الطول شف لهذي حل خله تجمع الأرقام بطال مايعد الطول
+        if(m1.isEmpty() || m1.length() == 0 || m1.equals("") || m1 == null)
+        {  m =0;   //EditText is empty
+        }
+        else
+        {m = Integer.parseInt(m1); //EditText is not empty
+            if(m >152 || scoreLeft>153 || scoreRight>153){
+                m=0;
+                AlertDialog.Builder ABuilder = new AlertDialog.Builder(MainActivity.this);
+                ABuilder.setTitle("إدخال خاطأ");
+                ABuilder.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        dialoginterface.dismiss();
+                    }
+                });
+                AlertDialog dialog = ABuilder.create();
+                dialog.show();
+            }
+        } // end of chicking and start of counting
+
+
+        if(scoreLeft<300 || scoreRight<300){
+            scoreLeft +=n;
+            scoreRight += m;
+
+            if(scoreLeft>=152) {
+
+
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.alert_dialog_they, null);
+
+                mBuilder.setPositiveButton("نعم", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        resetWithoutButton();
+                        dialoginterface.dismiss();
+                    }
+                });
+                mBuilder.setNegativeButton("لا", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialoginterface, int i) {
+                        dialoginterface.dismiss();
+                    }
+                });
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+
+            }
+
+
+
+            if(scoreRight>=152){
+                displayLeft(scoreLeft);
+                displayRight(scoreRight);
+                EditTextThem.getText().clear();
+                EditTextUs.getText().clear();
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.alert_dialog_we, null);
+                mBuilder.setPositiveButton("نعم" , new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick( DialogInterface dialoginterface , int i) {
+                        resetWithoutButton();
+                        dialoginterface.dismiss();}
+                });
+
+                mBuilder.setNegativeButton("لا" , new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick( DialogInterface dialoginterface , int i) {
+                        dialoginterface.dismiss();}
+                });
+
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show(); }
+        }
+        else
+        {
+
+
+        }
+            displayLeft(scoreLeft);
+            displayRight(scoreRight);
+            EditTextThem.getText().clear();
+            EditTextUs.getText().clear();
+        }
+
+    public void back (View view){
+
+        scoreLeft -=n;
+
+        scoreRight -= m;
+
+        displayLeft(scoreLeft);
+
+        displayRight(scoreRight);
+
+        n=0;
+
+        m=0;}
+
+    public void reset(View view){
+
+        scoreRight=0;
+
+        scoreLeft =0;
+
+        displayLeft(scoreLeft);
+
+        displayRight(scoreRight);
+
+
+        n=0;
+
+        m=0;}
+
+    public void resetWithoutButton(){
+
+        scoreRight=0;
+
+        scoreLeft =0;
+
+        displayLeft(scoreLeft);
+
+        displayRight(scoreRight);
+
+
+        n=0;
+
+        m=0;}
+/*
+    public void weWon(){
+
+        String we = "We Won" ;
+
+        TextView textView =(TextView) findViewById(R.id.text);
+
+        textView.setText(String.valueOf(we));}
+
+    public void theyWon(){
+
+        String they = "They Won";
+
+        TextView textView =(TextView) findViewById(R.id.text);
+
+        textView.setText(String.valueOf(they));}*/
+
+
+
+    public void displayLeft(int scoreL){
+
+        TextView teamATextView =(TextView) findViewById(R.id.SecLeft);
+
+        teamATextView.setText(String.valueOf(scoreL));}
+
+
+
+    public void displayRight(int scoreR){
+
+        TextView teamBTextView =(TextView) findViewById(R.id.SecRight);
+
+        teamBTextView.setText(String.valueOf(scoreR));}
+
+}
+//
+//////// //////////////////////
+
+alert we
+
+android:padding="5dp">
+
+
+    <TextView
+        android:id="@+id/alertTextViewWeTITLE"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="فزنا"
+    android:layout_gravity="center"/>
+
+
+    <TextView
+        android:id="@+id/alertTextViewWe"
+        android:textSize="15sp"
+
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="صكة جديدة ؟"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>
+/// ///
+///// /////////////////////////
+ android:padding="5dp">
+
+    <TextView
+        android:id="@+id/alertTextViewTheyTITLE"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="فازوا"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/alertTextViewThey"
+        android:textSize="15sp"
+
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="صكة جديدة ؟"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+/////////////////////
+//////////////////////////////
+ android:background="#ffff"
+    tools:context="com.example.omara.balootcounter.MainActivity">
+
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="#111"
+        android:id="@+id/view"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="8dp">
+
+        <TextView
+            android:paddingBottom="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:id="@+id/text"
+            android:textSize="32sp"
+            android:textColor="#ffff"
+            android:layout_width="205dp"
+            android:layout_height="60dp"
+            />
+    </RelativeLayout>
+
+    // لنا و لهم !!!!!!!!!!
+
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="205dp"
+        android:layout_height="210dp"
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/view"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="0dp">
+        <TextView
+            android:paddingStart="6dp"
+            android:paddingTop="16dp"
+            android:id="@+id/us"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لهم"
+            android:textColor="#3B9C9C"
+            android:paddingBottom="25dp"
+            android:textSize="25sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:paddingStart="8dp"
+            android:id="@+id/SecLeft"
+            android:paddingBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="48dp"
+            android:textColor="#808080"
+            android:layout_below="@+id/us"
+            android:layout_alignParentStart="true" />
+        <EditText
+            android:text="0"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/SecLeft"
+            android:id="@+id/counter_us"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:textColor="#808080"
+            android:inputType="number"/>
+        // لنا   لنا لنا لنا لنا لنا
+        <TextView
+            android:paddingEnd="12dp"
+            android:paddingTop="16dp"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/them"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="لنا"
+            android:textColor="#3B9C9C"
+            android:paddingBottom="25dp"
+            android:textSize="25sp"/>
+        <TextView
+            android:paddingEnd="8dp"
+            android:id="@+id/SecRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="48dp"
+            android:text="0"
+            android:paddingBottom="20dp"
+            android:textColor="#808080"
+            android:layout_below="@+id/them"
+            android:layout_alignParentEnd="true" />
+        <EditText
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/SecRight"
+            android:id="@+id/counter_them"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:inputType="number"
+            android:textColor="#808080"
+            />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/Button1"
+        android:onClick="enter"
+        android:background="#3B9C9C"
+        android:layout_height="44dp"
+        android:layout_width="130dp"
+        android:text="سجل"
+        android:textColor="#ffff"
+        android:textSize="25sp"
+
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="57dp"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_toEndOf="@+id/view" />
+
+    <Button
+        android:onClick="back"
+        android:background="#808080"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:text="تراجع"
+        android:layout_marginLeft="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:id="@+id/button"
+        android:layout_alignTop="@+id/Button1"
+        android:layout_alignParentEnd="true" />
+    <Button
+
+        android:onClick="reset"
+        android:background="#000"
+        android:textColor="#ffff"
+        android:text="طقة جديدة"
+        android:layout_marginLeft="30dp"
+        android:layout_width="85dp"
+        android:layout_height="40dp"
+        android:id="@+id/reset_button"
+        android:layout_marginBottom="18dp"
+        android:layout_alignParentBottom="true"
+        />

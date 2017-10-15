@@ -1,0 +1,24 @@
+int i=5,c=0;
+int a[i];
+
+    cout<<"enter 5 numbers"<<endl;
+    while(c<i){
+        cin>>a[c];
+
+int j = c ;
+        int big;
+        int small;
+        int swap1;
+       while(j>=0){
+
+         if(a[j]>a[j-1]){
+
+            swap1=a[j];
+            a[j]=a[j-1];
+            a[j-1]=swap1;
+         }j--;
+}c++;
+}
+
+for(int b=0;b<i;b++){
+cout<<a[b]<<"\t";}

@@ -1,0 +1,64 @@
+#include <iostream>
+
+using namespace std;
+void enter(int n[],int z);
+void printSorted(int n[], int z);
+int binarySearch(int n[],int z);
+int main()
+{ int i=10,c=0;
+int a[i];
+enter(a,i);
+printSorted(a,i);
+
+int sKey;
+cout<<"\n Enter a number to search for"<<endl;
+cin>>sKey;
+int loc=binarySearch(a,sKey);
+
+    return 0;
+}
+
+void enter(int n[],int z){
+int i=10,c=0;
+cout<<"enter 10 numbers"<<endl;
+while(c<i){
+        cin>>n[c];
+int j=c;
+int small,big,swap1;
+while(j>0){
+    if(n[j]<n[j-1]){
+       swap1=n[j-1];
+       n[j-1]=n[j];
+      n[j]=swap1;
+    }j--;}c++;}}
+
+void printSorted(int n[], int z){
+for(int b=0;b<z;b++){
+    cout<<n[b]<<"\t";
+}
+}
+
+int binarySearch(int n[],int zKey){
+    int i=10;
+int start=0,end=i-1;
+int mid=(start+end)/2;
+int sKey, loc;
+
+while(start <=end && zKey !=n[mid]){
+    if(zKey<n[mid]){
+        end=mid-1;
+       mid=(start+end)/2;
+    }
+    else if(zKey>n[mid]){
+            start=mid+1;
+            mid=(start+end)/2;}
+
+            }
+if(zKey == n[mid]){
+        loc=mid+1;
+    cout<<"the location of the search key "<<zKey<<" is "<<loc;}
+else {
+    cout<<"location not found";
+}
+
+return loc;}
